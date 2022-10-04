@@ -37,19 +37,21 @@ class Utils {
     BuildContext context,
     double height,
     double width,
+    bool visibleTime,
   ) {
     List<TextSpan> text = [
       TextSpan(
         text: event.title,
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      TextSpan(
-        text: ' ' +
-            Utils.hourFormatter(event.start.hour, event.start.minute) +
-            ' - ' +
-            Utils.hourFormatter(event.end.hour, event.end.minute) +
-            '\n\n',
-      ),
+      if (visibleTime)
+        TextSpan(
+          text: ' ' +
+              Utils.hourFormatter(event.start.hour, event.start.minute) +
+              ' - ' +
+              Utils.hourFormatter(event.end.hour, event.end.minute) +
+              '\n\n',
+        ),
     ];
 
     bool? exceedHeight;

@@ -44,6 +44,8 @@ class TimetableStyle {
   final int timelineBorderStart;
   final int timelineBorderPerHours;
 
+  final bool visibleEventTime;
+
   const TimetableStyle({
     this.startHour: 0,
     this.endHour: 24,
@@ -67,5 +69,6 @@ class TimetableStyle {
     this.visibleLaneView: true,
     this.timelineBorderStart: 1,
     this.timelineBorderPerHours: 1,
+    this.visibleEventTime: true,
   });
 }
