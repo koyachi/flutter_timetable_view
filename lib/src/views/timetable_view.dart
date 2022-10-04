@@ -107,11 +107,12 @@ class _TimetableViewState extends State<TimetableView>
         children: [
           for (var i = widget.timetableStyle.startHour;
               i < widget.timetableStyle.endHour;
-              i += 1)
+              i += widget.timetableStyle.timelineBorderPerHours)
             i
         ].map((hour) {
           return Container(
-            height: widget.timetableStyle.timeItemHeight,
+            height: widget.timetableStyle.timeItemHeight *
+                widget.timetableStyle.timelineBorderPerHours,
             decoration: BoxDecoration(
               border: Border(
                 top: BorderSide(
