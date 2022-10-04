@@ -38,6 +38,7 @@ class Utils {
     double height,
     double width,
     bool visibleTime,
+    TextAlign textAlign,
   ) {
     List<TextSpan> text = [
       TextSpan(
@@ -74,6 +75,7 @@ class Utils {
         children: text,
         style: event.textStyle,
       ),
+      textAlign: TextAlign.center,
     );
   }
 
