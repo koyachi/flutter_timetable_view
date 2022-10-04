@@ -38,10 +38,10 @@ class _TimetableViewState extends State<TimetableView>
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        _buildCorner(),
+        if (widget.timetableStyle.visibleLaneView) _buildCorner(),
         _buildMainContent(context),
         _buildTimelineList(context),
-        _buildLaneList(context),
+        if (widget.timetableStyle.visibleLaneView) _buildLaneList(context),
       ],
     );
   }
@@ -64,7 +64,9 @@ class _TimetableViewState extends State<TimetableView>
     return Padding(
       padding: EdgeInsets.only(
         left: widget.timetableStyle.timeItemWidth,
-        top: widget.timetableStyle.laneHeight,
+        top: widget.timetableStyle.visibleLaneView
+            ? widget.timetableStyle.laneHeight
+            : 0,
       ),
       child: DiagonalScrollView(
         horizontalPixelsStreamController: horizontalPixelsStream,
@@ -93,7 +95,9 @@ class _TimetableViewState extends State<TimetableView>
     return Container(
       alignment: Alignment.topLeft,
       width: widget.timetableStyle.timeItemWidth,
-      padding: EdgeInsets.only(top: widget.timetableStyle.laneHeight),
+      padding: widget.timetableStyle.visibleLaneView
+          ? EdgeInsets.only(top: widget.timetableStyle.laneHeight)
+          : null,
       color: widget.timetableStyle.timelineColor,
       child: ListView(
         physics: const ClampingScrollPhysics(),
