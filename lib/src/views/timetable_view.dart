@@ -79,10 +79,13 @@ class _TimetableViewState extends State<TimetableView>
                 widget.timetableStyle.timeItemHeight,
         child: IntrinsicHeight(
           child: Row(
-            children: widget.laneEventsList.map((laneEvents) {
+            children: widget.laneEventsList.asMap().entries.map((entry) {
+              final index = entry.key;
+              final laneEvents = entry.value;
               return LaneView(
                 events: laneEvents.events,
                 timetableStyle: widget.timetableStyle,
+                laneIndex: index,
               );
             }).toList(),
           ),

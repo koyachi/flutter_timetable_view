@@ -7,13 +7,14 @@ import 'package:flutter_timetable_view/src/views/event_view.dart';
 class LaneView extends StatelessWidget {
   final List<TableEvent> events;
   final TimetableStyle timetableStyle;
+  final int laneIndex;
 
   const LaneView({
     Key? key,
     required this.events,
     required this.timetableStyle,
-  })  : 
-        super(key: key);
+    required this.laneIndex,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class LaneView extends StatelessWidget {
               child: CustomPaint(
                 painter: BackgroundPainter(
                   timetableStyle: timetableStyle,
+                  laneIndex: laneIndex,
                 ),
               ),
             )

@@ -3,9 +3,11 @@ import 'package:flutter_timetable_view/src/styles/timetable_style.dart';
 
 class BackgroundPainter extends CustomPainter {
   final TimetableStyle timetableStyle;
+  final int laneIndex;
 
   BackgroundPainter({
     required this.timetableStyle,
+    required this.laneIndex,
   });
 
   @override
@@ -22,7 +24,9 @@ class BackgroundPainter extends CustomPainter {
         canvas.drawLine(
           Offset(0, topOffset),
           Offset(size.width, topOffset),
-          Paint()..color = timetableStyle.timelineBorderColor,
+          Paint()
+            ..color = timetableStyle.timelineBorderColor
+            ..strokeWidth = timetableStyle.borderStrokeWidth,
         );
       }
     }
@@ -43,6 +47,33 @@ class BackgroundPainter extends CustomPainter {
           );
           startX += dashWidth + dashSpace;
         }
+      }
+    }
+
+    List<Color>? laneBorderColors = timetableStyle.laneBorderColors;
+    if (laneBorderColors != null) {
+      double topOffset = 0.0;
+      double bottomOffset =
+          (timetableStyle.endHour - timetableStyle.startHour) *
+              timetableStyle.timeItemHeight;
+      double x = 0.5;
+      canvas.drawLine(
+        Offset(x, topOffset),
+        Offset(x, bottomOffset),
+        Paint()
+          ..color = laneBorderColors[laneIndex]
+          ..strokeWidth = timetableStyle.borderStrokeWidth,
+      );
+
+      if (laneIndex == laneBorderColors.length - 2) {
+        double x = timetableStyle.laneWidth - 0.5;
+        canvas.drawLine(
+          Offset(x, topOffset),
+          Offset(x, bottomOffset),
+          Paint()
+            ..color = laneBorderColors[laneIndex + 1]
+            ..strokeWidth = timetableStyle.borderStrokeWidth,
+        );
       }
     }
   }

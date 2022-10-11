@@ -25,6 +25,9 @@ class TimetableStyle {
 
   final double laneHeight;
 
+  // length = lanes count + 1(for right border)
+  final List<Color>? laneBorderColors;
+
   final double timeItemHeight;
 
   final double timeItemWidth;
@@ -46,6 +49,7 @@ class TimetableStyle {
 
   final bool visibleEventTime;
   final TextAlign eventTextAlign;
+  final double borderStrokeWidth;
 
   const TimetableStyle({
     this.startHour: 0,
@@ -60,6 +64,7 @@ class TimetableStyle {
     this.timeItemTextColor: Colors.blue,
     this.laneWidth: 300,
     this.laneHeight: 70,
+    this.laneBorderColors,
     this.timeItemHeight: 60,
     this.timeItemWidth: 70,
     this.decorationLineHeight: 20,
@@ -72,5 +77,6 @@ class TimetableStyle {
     this.timelineBorderPerHours: 1,
     this.visibleEventTime: true,
     this.eventTextAlign: TextAlign.start,
+    this.borderStrokeWidth: 0.5,
   });
 }
