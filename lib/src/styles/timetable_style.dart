@@ -47,6 +47,7 @@ class TimetableStyle {
   final bool visibleLaneView;
 
   final int timelineBorderStart;
+  final int timelineBorderEnd;
   final int timelineBorderPerHours;
 
   final bool visibleEventTime;
@@ -77,6 +78,7 @@ class TimetableStyle {
     this.visibleDecorationBorder: false,
     this.visibleLaneView: true,
     this.timelineBorderStart: 1,
+    this.timelineBorderEnd: 24,
     this.timelineBorderPerHours: 1,
     this.visibleEventTime: true,
     this.eventTextAlign: TextAlign.start,

@@ -26,9 +26,10 @@ class BackgroundPainter extends CustomPainter {
 
     if (timetableStyle.visibleTimeBorder) {
       for (int hour = timetableStyle.timelineBorderStart;
-          hour < 24;
+          hour <= timetableStyle.timelineBorderEnd;
           hour += timetableStyle.timelineBorderPerHours) {
-        double topOffset = calculateTopOffset(hour);
+        double topOffset =
+            calculateTopOffset(hour - timetableStyle.timelineBorderStart);
         canvas.drawLine(
           Offset(0, topOffset),
           Offset(size.width, topOffset),
