@@ -28,6 +28,8 @@ class TimetableStyle {
   // length = lanes count + 1(for right border)
   final List<Color>? laneBorderColors;
 
+  final List<Color>? laneBackgroundColors;
+
   final double timeItemHeight;
 
   final double timeItemWidth;
@@ -65,6 +67,7 @@ class TimetableStyle {
     this.laneWidth: 300,
     this.laneHeight: 70,
     this.laneBorderColors,
+    this.laneBackgroundColors,
     this.timeItemHeight: 60,
     this.timeItemWidth: 70,
     this.decorationLineHeight: 20,

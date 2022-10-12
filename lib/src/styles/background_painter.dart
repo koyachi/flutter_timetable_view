@@ -12,10 +12,18 @@ class BackgroundPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    List<Color>? laneBackgroundColors = timetableStyle.laneBackgroundColors;
+    Color backgroundColor;
+    if (laneBackgroundColors != null) {
+      backgroundColor = laneBackgroundColors[laneIndex];
+    } else {
+      backgroundColor = timetableStyle.mainBackgroundColor;
+    }
     canvas.drawRect(
       Rect.fromLTWH(0, 0, size.width, size.height),
-      Paint()..color = timetableStyle.mainBackgroundColor,
+      Paint()..color = backgroundColor,
     );
+
     if (timetableStyle.visibleTimeBorder) {
       for (int hour = timetableStyle.timelineBorderStart;
           hour < 24;
