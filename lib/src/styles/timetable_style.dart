@@ -52,6 +52,7 @@ class TimetableStyle {
 
   final bool visibleEventTime;
   final TextAlign eventTextAlign;
+  final Alignment eventContainerAlignment;
   final double borderStrokeWidth;
 
   const TimetableStyle({
@@ -82,6 +83,7 @@ class TimetableStyle {
     this.timelineBorderPerHours: 1,
     this.visibleEventTime: true,
     this.eventTextAlign: TextAlign.start,
+    this.eventContainerAlignment: Alignment.topLeft,
     this.borderStrokeWidth: 0.5,
   });
 }

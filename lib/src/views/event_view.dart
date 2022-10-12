@@ -29,18 +29,22 @@ class EventView extends StatelessWidget {
               event.decoration ?? (BoxDecoration(color: event.backgroundColor)),
           margin: event.margin,
           padding: event.padding,
-          child: (Utils.eventText)(
-            event,
-            context,
-            math.max(
-                0.0, height() - (event.padding.top) - (event.padding.bottom)),
-            math.max(
-                0.0,
-                timetableStyle.laneWidth -
-                    (event.padding.left) -
-                    (event.padding.right)),
-            timetableStyle.visibleEventTime,
-            timetableStyle.eventTextAlign,
+          child: Align(
+            alignment:
+                timetableStyle.eventContainerAlignment ?? Alignment.topLeft,
+            child: (Utils.eventText)(
+              event,
+              context,
+              math.max(
+                  0.0, height() - (event.padding.top) - (event.padding.bottom)),
+              math.max(
+                  0.0,
+                  timetableStyle.laneWidth -
+                      (event.padding.left) -
+                      (event.padding.right)),
+              timetableStyle.visibleEventTime,
+              timetableStyle.eventTextAlign,
+            ),
           ),
         ),
       ),

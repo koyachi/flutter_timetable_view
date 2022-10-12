@@ -75,7 +75,7 @@ class Utils {
         children: text,
         style: event.textStyle,
       ),
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
     );
   }
 
