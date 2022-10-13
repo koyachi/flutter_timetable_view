@@ -102,11 +102,11 @@ class _TimetableViewState extends State<TimetableView>
       shrinkWrap: true,
       children: [
         for (var i = widget.timetableStyle.startHour;
-            i < widget.timetableStyle.endHour;
+            i <= widget.timetableStyle.endHour;
             i += widget.timetableStyle.timelineBorderPerHours)
           i
       ].map((hour) {
-        BoxDecoration? decoration;
+        BoxDecoration? decoration = null;
         if (widget.timetableStyle.visibleTimelineBorder) {
           decoration = BoxDecoration(
             border: Border(
