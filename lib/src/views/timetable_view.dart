@@ -95,6 +95,41 @@ class _TimetableViewState extends State<TimetableView>
   }
 
   Widget _buildTimelineList(BuildContext context) {
+    Widget listView = ListView(
+      physics: const ClampingScrollPhysics(),
+      controller: verticalScrollController,
+      scrollDirection: Axis.vertical,
+      shrinkWrap: true,
+      children: [
+        for (var i = widget.timetableStyle.startHour;
+            i < widget.timetableStyle.endHour;
+            i += widget.timetableStyle.timelineBorderPerHours)
+          i
+      ].map((hour) {
+        BoxDecoration? decoration;
+        if (widget.timetableStyle.visibleTimelineBorder) {
+          decoration = BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: widget.timetableStyle.timelineBorderColor,
+                width: 0,
+              ),
+            ),
+            color: widget.timetableStyle.timelineItemColor,
+          );
+        }
+        return Container(
+          height: widget.timetableStyle.timeItemHeight *
+              widget.timetableStyle.timelineBorderPerHours,
+          decoration: decoration,
+          child: Text(
+            Utils.hourFormatter(hour, 0),
+            style: TextStyle(color: widget.timetableStyle.timeItemTextColor),
+            textAlign: TextAlign.center,
+          ),
+        );
+      }).toList(),
+    );
     return Container(
       alignment: Alignment.topLeft,
       width: widget.timetableStyle.timeItemWidth,
@@ -102,37 +137,12 @@ class _TimetableViewState extends State<TimetableView>
           ? EdgeInsets.only(top: widget.timetableStyle.laneHeight)
           : null,
       color: widget.timetableStyle.timelineColor,
-      child: ListView(
-        physics: const ClampingScrollPhysics(),
-        controller: verticalScrollController,
-        scrollDirection: Axis.vertical,
-        shrinkWrap: true,
-        children: [
-          for (var i = widget.timetableStyle.startHour;
-              i < widget.timetableStyle.endHour;
-              i += widget.timetableStyle.timelineBorderPerHours)
-            i
-        ].map((hour) {
-          return Container(
-            height: widget.timetableStyle.timeItemHeight *
-                widget.timetableStyle.timelineBorderPerHours,
-            decoration: BoxDecoration(
-              border: Border(
-                top: BorderSide(
-                  color: widget.timetableStyle.timelineBorderColor,
-                  width: 0,
-                ),
-              ),
-              color: widget.timetableStyle.timelineItemColor,
+      child: widget.timetableStyle.visibleTimelineBorder
+          ? listView
+          : Transform.translate(
+              offset: Offset(0, -6),
+              child: listView,
             ),
-            child: Text(
-              Utils.hourFormatter(hour, 0),
-              style: TextStyle(color: widget.timetableStyle.timeItemTextColor),
-              textAlign: TextAlign.center,
-            ),
-          );
-        }).toList(),
-      ),
     );
   }
 

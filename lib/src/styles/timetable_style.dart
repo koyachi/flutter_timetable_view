@@ -49,6 +49,7 @@ class TimetableStyle {
   final int timelineBorderStart;
   final int timelineBorderEnd;
   final int timelineBorderPerHours;
+  final bool visibleTimelineBorder;
 
   final bool visibleEventTime;
   final TextAlign eventTextAlign;
@@ -67,6 +68,7 @@ class TimetableStyle {
     this.decorationLineBorderColor: const Color(0x1A000000),
     this.timelineBorderColor: const Color(0x1A000000),
     this.timeItemTextColor: Colors.blue,
+    this.visibleTimelineBorder: true,
     this.laneWidth: 300,
     this.laneHeight: 70,
     this.laneBorderColors,
