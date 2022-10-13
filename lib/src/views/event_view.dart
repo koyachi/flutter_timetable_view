@@ -44,6 +44,7 @@ class EventView extends StatelessWidget {
                       (event.padding.right)),
               timetableStyle.visibleEventTime,
               timetableStyle.eventTextAlign,
+              timetableStyle.eventTextFontWeight,
             ),
           ),
         ),

@@ -53,6 +53,7 @@ class TimetableStyle {
   final bool visibleEventTime;
   final TextAlign eventTextAlign;
   final Alignment eventContainerAlignment;
+  final FontWeight eventTextFontWeight;
   final double borderStrokeWidth;
 
   const TimetableStyle({
@@ -84,6 +85,7 @@ class TimetableStyle {
     this.visibleEventTime: true,
     this.eventTextAlign: TextAlign.start,
     this.eventContainerAlignment: Alignment.topLeft,
+    this.eventTextFontWeight: FontWeight.bold,
     this.borderStrokeWidth: 0.5,
   });
 }

@@ -39,11 +39,12 @@ class Utils {
     double width,
     bool visibleTime,
     TextAlign textAlign,
+    FontWeight fontWeight,
   ) {
     List<TextSpan> text = [
       TextSpan(
         text: event.title,
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: fontWeight),
       ),
       if (visibleTime)
         TextSpan(
