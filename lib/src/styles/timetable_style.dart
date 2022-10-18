@@ -19,6 +19,8 @@ class TimetableStyle {
 
   final Color timelineBorderColor;
 
+  final bool useNonScrollableTimeline;
+
   final Color decorationLineBorderColor;
 
   final double laneWidth;
@@ -68,6 +70,7 @@ class TimetableStyle {
     this.decorationLineBorderColor: const Color(0x1A000000),
     this.timelineBorderColor: const Color(0x1A000000),
     this.timeItemTextColor: Colors.blue,
+    this.useNonScrollableTimeline: false,
     this.visibleTimelineBorder: true,
     this.laneWidth: 300,
     this.laneHeight: 70,

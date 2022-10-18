@@ -95,41 +95,51 @@ class _TimetableViewState extends State<TimetableView>
   }
 
   Widget _buildTimelineList(BuildContext context) {
-    Widget listView = ListView(
-      physics: const ClampingScrollPhysics(),
-      controller: verticalScrollController,
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      children: [
-        for (var i = widget.timetableStyle.startHour;
-            i <= widget.timetableStyle.endHour;
-            i += widget.timetableStyle.timelineBorderPerHours)
-          i
-      ].map((hour) {
-        BoxDecoration? decoration = null;
-        if (widget.timetableStyle.visibleTimelineBorder) {
-          decoration = BoxDecoration(
-            border: Border(
-              top: BorderSide(
-                color: widget.timetableStyle.timelineBorderColor,
-                width: 0,
-              ),
+    List<Widget> children = [
+      for (var i = widget.timetableStyle.startHour;
+          i <= widget.timetableStyle.endHour;
+          i += widget.timetableStyle.timelineBorderPerHours)
+        i
+    ].map((hour) {
+      BoxDecoration? decoration = null;
+      if (widget.timetableStyle.visibleTimelineBorder) {
+        decoration = BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: widget.timetableStyle.timelineBorderColor,
+              width: 0,
             ),
-            color: widget.timetableStyle.timelineItemColor,
-          );
-        }
-        return Container(
-          height: widget.timetableStyle.timeItemHeight *
-              widget.timetableStyle.timelineBorderPerHours,
-          decoration: decoration,
-          child: Text(
-            Utils.hourFormatter(hour, 0),
-            style: TextStyle(color: widget.timetableStyle.timeItemTextColor),
-            textAlign: TextAlign.center,
           ),
+          color: widget.timetableStyle.timelineItemColor,
         );
-      }).toList(),
-    );
+      }
+      return Container(
+        height: widget.timetableStyle.timeItemHeight *
+            widget.timetableStyle.timelineBorderPerHours,
+        decoration: decoration,
+        child: Text(
+          Utils.hourFormatter(hour, 0),
+          style: TextStyle(color: widget.timetableStyle.timeItemTextColor),
+          textAlign: TextAlign.center,
+        ),
+      );
+    }).toList();
+    Widget listView;
+    if (widget.timetableStyle.useNonScrollableTimeline) {
+      listView = SingleChildScrollView(
+        child: Column(
+          children: children,
+        ),
+      );
+    } else {
+      listView = ListView(
+        physics: const ClampingScrollPhysics(),
+        controller: verticalScrollController,
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        children: children,
+      );
+    }
     return Container(
       alignment: Alignment.topLeft,
       width: widget.timetableStyle.timeItemWidth,
