@@ -127,6 +127,7 @@ class _TimetableViewState extends State<TimetableView>
     Widget listView;
     if (widget.timetableStyle.useNonScrollableTimeline) {
       listView = SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
         child: Column(
           children: children,
         ),
